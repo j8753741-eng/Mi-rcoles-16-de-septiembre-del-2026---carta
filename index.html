@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100918">
+<title>16 · Mi Tesorito de Mi Amanecer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#100918;
+    --bg2:#1a1022;
+    --paper:#fff8ed;
+    --paper2:#f8ead8;
+    --ink:#332331;
+    --soft:#a88c9f;
+    --gold:#e5bd7b;
+    --gold2:#f6dba5;
+    --purple:#c96cff;
+    --purple2:#9b35ff;
+    --white:#fffaff;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% 15%, rgba(167,77,214,.16), transparent 27%),
+        radial-gradient(circle at 15% 80%, rgba(226,170,105,.08), transparent 25%),
+        radial-gradient(circle at 90% 65%, rgba(143,50,190,.09), transparent 28%),
+        linear-gradient(145deg,#0c0710,#170d1c 48%,#0b0610);
+    color:var(--white);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   FONDO ATMOSFÉRICO
+========================= */
+
+.ambient{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.glow{
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.18;
+    animation:drift 12s ease-in-out infinite alternate;
+}
+
+.glow.one{
+    background:#a946d4;
+    top:8%;
+    left:-100px;
+}
+
+.glow.two{
+    background:#e3ae68;
+    right:-110px;
+    bottom:12%;
+    animation-delay:-5s;
+}
+
+@keyframes drift{
+    from{transform:translate3d(0,0,0) scale(1);}
+    to{transform:translate3d(35px,-25px,0) scale(1.12);}
+}
+
+/* partículas */
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#f3d5a1;
+    border-radius:50%;
+    opacity:0;
+    animation:float 7s linear infinite;
+}
+
+.p1{left:12%;top:85%;animation-delay:0s;}
+.p2{left:25%;top:70%;animation-delay:2s;}
+.p3{left:43%;top:90%;animation-delay:4s;}
+.p4{left:67%;top:76%;animation-delay:1s;}
+.p5{left:84%;top:88%;animation-delay:3s;}
+.p6{left:91%;top:55%;animation-delay:5s;}
+.p7{left:7%;top:50%;animation-delay:4.5s;}
+
+@keyframes float{
+    0%{
+        transform:translateY(40px) scale(.4);
+        opacity:0;
+    }
+    20%{opacity:.55;}
+    80%{opacity:.3;}
+    100%{
+        transform:translateY(-180px) scale(1);
+        opacity:0;
+    }
+}
+
+/* =========================
+   INTRO
+========================= */
+
+main{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:55px 18px 80px;
+}
+
+.intro{
+    text-align:center;
+    animation:appear 1.2s ease both;
+}
+
+.number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:58px;
+    height:58px;
+    border:1px solid rgba(229,189,123,.55);
+    border-radius:50%;
+    color:var(--gold2);
+    font-family:"Cormorant Garamond",serif;
+    font-size:1.45rem;
+    box-shadow:
+        0 0 25px rgba(229,189,123,.08),
+        inset 0 0 18px rgba(229,189,123,.04);
+    margin-bottom:22px;
+}
+
+.date{
+    font-size:.68rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#c9aebf;
+    margin-bottom:15px;
+}
+
+.intro h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(2.3rem,7vw,4.4rem);
+    font-weight:500;
+    line-height:1;
+    color:#fff6e8;
+    margin-bottom:17px;
+}
+
+.intro .subtitle{
+    max-width:570px;
+    margin:auto;
+    color:#bda8b9;
+    font-size:.88rem;
+    line-height:1.8;
+}
+
+/* =========================
+   RELICARIO
+========================= */
+
+.reliquary{
+    position:relative;
+    margin:52px auto 0;
+    max-width:760px;
+    animation:appear 1.4s .15s ease both;
+}
+
+.reliquary::before{
+    content:"";
+    position:absolute;
+    inset:-18px;
+    border:1px solid rgba(229,189,123,.13);
+    border-radius:32px;
+    pointer-events:none;
+}
+
+.reliquary::after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    top:-65px;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:
+        radial-gradient(circle,
+        rgba(229,189,123,.22) 0 5px,
+        transparent 6px 15px,
+        rgba(229,189,123,.08) 16px 17px,
+        transparent 18px);
+    animation:pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:translateX(-50%) scale(.85);opacity:.55;}
+    50%{transform:translateX(-50%) scale(1.1);opacity:1;}
+}
+
+.letter-shell{
+    position:relative;
+    background:
+        linear-gradient(135deg,rgba(255,255,255,.1),transparent 28%),
+        linear-gradient(155deg,#fffaf1,#f5e6d4);
+    border-radius:26px;
+    padding:clamp(28px,6vw,58px);
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.5),
+        0 0 0 1px rgba(229,189,123,.2),
+        inset 0 1px 0 rgba(255,255,255,.8);
+    color:var(--ink);
+    overflow:hidden;
+}
+
+.letter-shell::before{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    width:180px;
+    height:180px;
+    background:radial-gradient(circle at top right,rgba(221,177,113,.2),transparent 68%);
+    pointer-events:none;
+}
+
+.letter-shell::after{
+    content:"";
+    position:absolute;
+    bottom:-80px;
+    left:-60px;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(173,94,177,.08),transparent 68%);
+    pointer-events:none;
+}
+
+.letter{
+    position:relative;
+    z-index:2;
+}
+
+.letter p{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(1.12rem,2.5vw,1.32rem);
+    line-height:1.75;
+    margin-bottom:22px;
+    color:#3d2a38;
+}
+
+.letter p:first-child{
+    text-align:center;
+    margin-bottom:34px;
+}
+
+.letter p:first-child strong{
+    display:inline-block;
+    font-size:clamp(1.8rem,5vw,2.65rem);
+    font-weight:600;
+    color:#70475f;
+    line-height:1.1;
+}
+
+.letter strong{
+    font-weight:700;
+    color:#633d55;
+}
+
+.signature{
+    text-align:center;
+    margin-top:35px;
+    padding-top:28px;
+    border-top:1px solid rgba(111,69,91,.16);
+}
+
+.signature strong{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(1.15rem,3vw,1.5rem);
+    letter-spacing:1.5px;
+}
+
+/* =========================
+   FRASE FINAL NEÓN
+========================= */
+
+.final-section{
+    text-align:center;
+    margin:75px auto 0;
+    max-width:700px;
+    animation:appear 1.5s .35s ease both;
+}
+
+.final-label{
+    font-size:.65rem;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#a98ca9;
+    margin-bottom:24px;
+}
+
+.final-love{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(1.45rem,4vw,2.15rem);
+    line-height:1.55;
+    font-weight:500;
+    color:#fff;
+    text-shadow:
+        0 0 7px rgba(201,108,255,.8),
+        0 0 22px rgba(177,61,255,.55),
+        0 0 48px rgba(143,40,255,.25);
+    animation:neon 3s ease-in-out infinite alternate;
+}
+
+@keyframes neon{
+    from{
+        text-shadow:
+            0 0 5px rgba(201,108,255,.65),
+            0 0 17px rgba(177,61,255,.35);
+    }
+    to{
+        text-shadow:
+            0 0 8px rgba(224,158,255,.95),
+            0 0 28px rgba(177,61,255,.7),
+            0 0 52px rgba(143,40,255,.4);
+    }
+}
+
+.final-name{
+    display:block;
+    margin-top:23px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(1rem,3vw,1.35rem);
+    letter-spacing:2px;
+    color:#e6b5ff;
+    text-shadow:
+        0 0 7px rgba(201,108,255,.9),
+        0 0 22px rgba(177,61,255,.6);
+}
+
+/* =========================
+   BOTÓN POEMA
+========================= */
+
+.poem-area{
+    text-align:center;
+    margin-top:55px;
+}
+
+.poem-button{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 25px;
+    border:1px solid rgba(201,108,255,.5);
+    border-radius:50px;
+    color:#f5dcff;
+    text-decoration:none;
+    font-size:.82rem;
+    letter-spacing:1.2px;
+    background:rgba(116,39,150,.12);
+    box-shadow:
+        0 0 18px rgba(170,61,255,.16),
+        inset 0 0 18px rgba(170,61,255,.05);
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
+}
+
+.poem-button span{
+    font-size:1.15rem;
+}
+
+.poem-button:hover{
+    transform:translateY(-4px);
+    background:rgba(150,58,190,.2);
+    box-shadow:
+        0 0 28px rgba(190,74,255,.4),
+        0 0 60px rgba(150,40,255,.15);
+}
+
+.poem-button:active{
+    transform:scale(.97);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    margin-top:75px;
+    color:#766275;
+    font-size:.67rem;
+    letter-spacing:2px;
+}
+
+.heart{
+    display:block;
+    color:#c98ee2;
+    font-size:1rem;
+    margin-bottom:10px;
+    animation:heartbeat 2.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.18);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.1);}
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(22px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    main{
+        padding:38px 15px 60px;
+    }
+
+    .date{
+        letter-spacing:3px;
+        font-size:.6rem;
+    }
+
+    .intro .subtitle{
+        padding:0 12px;
+    }
+
+    .reliquary{
+        margin-top:42px;
+    }
+
+    .reliquary::before{
+        inset:-9px;
+        border-radius:28px;
+    }
+
+    .letter-shell{
+        border-radius:21px;
+        padding:27px 22px 30px;
+    }
+
+    .letter p{
+        line-height:1.7;
+        margin-bottom:20px;
+    }
+
+    .letter p:first-child{
+        margin-bottom:28px;
+    }
+
+    .final-section{
+        margin-top:58px;
+        padding:0 8px;
+    }
+
+    .final-love{
+        line-height:1.48;
+    }
+
+    .poem-button{
+        width:100%;
+        max-width:310px;
+        justify-content:center;
+    }
+
+    footer{
+        margin-top:55px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="ambient">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <span class="particle p1"></span>
+    <span class="particle p2"></span>
+    <span class="particle p3"></span>
+    <span class="particle p4"></span>
+    <span class="particle p5"></span>
+    <span class="particle p6"></span>
+    <span class="particle p7"></span>
+</div>
+
+<main>
+
+    <header class="intro">
+        <div class="number">16</div>
+
+        <div class="date">
+            Miércoles · 16 de septiembre · 2026
+        </div>
+
+        <h1>Un pedacito de mi amor esperándote</h1>
+
+        <p class="subtitle">
+            Una pequeña carta que dejé preparada para ti,
+            para que mi amor pudiera encontrarte desde el comienzo de tu día.
+        </p>
+    </header>
+
+
+    <section class="reliquary">
+
+        <article class="letter-shell">
+
+            <div class="letter">
+
+                <p>
+                    <strong>Mi Tesorito de Mi Amanecer</strong>
+                </p>
+
+                <p>
+                    Buenos días, preciosa. ❤️
+                </p>
+
+                <p>
+                    Esta es nuestra mañana número dieciséis en la que te escribo este mes, y quería dejarte aquí un pedacito de mi amor para que estuviera esperándote desde el momento en que abrieras los ojos.
+                </p>
+
+                <p>
+                    Ayer fue un día bien bonito, princesa. Poder estar contigo la mayor parte del día es de esas cosas sencillas que para mí significan muchísimo, porque cada momento a tu lado sigue siendo uno de mis lugares favoritos. Lo único que me dejó preocupado fue ese dolor de estómago que tenías, preciosa. Ojalá hubiera podido estar contigo anoche, prepararte algo de comer, cuidarte un poquito y hacerte sentir acompañada.
+                </p>
+
+                <p>
+                    Espero que hoy la tarde en el colegio nos vaya muy bien. Aunque te confieso algo: me ponen nervioso esas fotos del grado porque yo no soy precisamente el más fotogénico del mundo jajaja, pero lo único que deseo de verdad es que a ti te salgan todas preciosas, porque sé que vas a verte hermosa en cada una.
+                </p>
+
+                <p>
+                    Y si hoy en algún momento te sientes cansada, incómoda o simplemente necesitas recordar que alguien te ama muchísimo, vuelve a estas palabras. Aquí voy a estar yo, queriéndote desde cerquita aunque no pueda acompañarte cada segundo.
+                </p>
+
+                <p>
+                    Te amo, mi preciosa. Y espero que hoy tu día tenga un poquito de la felicidad que tú provocas en mi corazón simplemente por existir. ❤️
+                </p>
+
+                <div class="signature">
+                    <strong>VALERIA PETRO VILLAZÓN</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <section class="final-section">
+
+        <div class="final-label">
+            Y antes de que sigas con tu día...
+        </div>
+
+        <div class="final-love">
+            Si pudiera esconder un beso entre estas palabras para que te encontrara
+            cada vez que las leas, lo haría una y mil veces, porque hasta cuando no
+            puedo estar junto a ti, mi corazón encuentra la manera de acercarse,
+            abrazarte y recordarte cuánto te elijo, cuánto te deseo en mi vida
+            y cuánto voy a seguir amándote con todo lo que soy.
+            
+            <span class="final-name">
+                VALERIA PETRO VILLAZÓN
+            </span>
+        </div>
+
+    </section>
+
+
+    <section class="poem-area">
+
+        <!-- Cambia "poema-16.html" por el nombre exacto de tu archivo si es diferente -->
+        <a class="poem-button" href="https://j8753741-eng.github.io/Mi-rcoles-16-de-septiembre-del-2026---poema/">
+            <span>♡</span>
+            Leer el poema de esta mañana
+        </a>
+
+    </section>
+
+
+    <footer>
+        <span class="heart">♡</span>
+        SEPTIEMBRE · 2026
+    </footer>
+
+</main>
+
+</body>
+  </html>
